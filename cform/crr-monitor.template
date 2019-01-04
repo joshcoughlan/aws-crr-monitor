@@ -407,7 +407,8 @@
         "sns_topic_arn" : { "Ref" : "CloudMetricsNotificationTopic"}
       },
       "DependsOn": [
-        "CRRMonitorTrailAlarm"
+        "CRRMonitorTrailAlarm",
+        "logBucketPolicy"
       ]
     },
     "CRRMonitorLambda": {
