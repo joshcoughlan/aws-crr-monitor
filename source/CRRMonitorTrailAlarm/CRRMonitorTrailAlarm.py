@@ -116,7 +116,10 @@ def get_source_bucket_arn(response):
 def get_replica_bucket_arn(response):
     try:
         dest_bucket_arn = response['ReplicationConfiguration']['Rules'][0]['Destination']['Bucket']
-        dest_bucket_prefix = response['ReplicationConfiguration']['Rules'][0]['Prefix']
+        if 'Prefix' in response['ReplicationConfiguration']['Rules'][0]:
+            dest_bucket_prefix = response['ReplicationConfiguration']['Rules'][0]['Prefix']
+        else:
+            dest_bucket_prefix = ''
         replica_bucket = dest_bucket_arn + '/' + dest_bucket_prefix
     except Exception as e:
         print(e)
